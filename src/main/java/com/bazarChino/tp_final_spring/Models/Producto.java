@@ -1,10 +1,11 @@
 package com.bazarChino.tp_final_spring.Models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter @Setter @Entity
+
+@Data
+@Entity
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -24,5 +25,8 @@ public class Producto {
         this.marca = marca;
         this.costo = costo;
         this.cantidad_disponible = cantidad_disponible;
+    }
+
+    public Producto() {
     }
 }

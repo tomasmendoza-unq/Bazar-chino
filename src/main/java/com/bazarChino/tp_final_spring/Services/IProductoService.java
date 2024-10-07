@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 public interface IProductoService {
-    public List<Producto> getProductos();
+    public List<ProductoDTO> getProductos();
 
-    public Producto getProductoById(Long codigoProducto);
+    public ProductoDTO getProductoDTOById(Long codigoProducto);
 
-    public void saveProducto(@Valid ProductoDTO product);
+    public ProductoDTO saveProducto(@Valid ProductoDTO product);
 
     public void deleteProductoById(Long codigoProducto);
 
