@@ -2,6 +2,7 @@ package com.bazarChino.tp_final_spring.Controllers;
 
 import com.bazarChino.tp_final_spring.DTO.ErrorDTO;
 import com.bazarChino.tp_final_spring.Exception.ResourceNotFound;
+import com.bazarChino.tp_final_spring.Exception.StockException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -38,6 +39,17 @@ public class GlobalControllerAdvice {
 
         error.put("Message",ex.getMessage());
         error.put("Id", ex.getId().toString());
+        return error;
+
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(StockException.class)
+    public Map<String, String> handleStockException(StockException ex){
+        Map<String, String> error = new HashMap<>();
+
+        error.put("Message",ex.getMessage());
+        error.put("Stock", ex.getStock().toString());
         return error;
 
     }

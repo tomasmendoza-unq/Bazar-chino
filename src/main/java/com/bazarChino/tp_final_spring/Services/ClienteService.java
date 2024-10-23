@@ -1,10 +1,10 @@
 package com.bazarChino.tp_final_spring.Services;
 
 import com.bazarChino.tp_final_spring.DTO.ClienteDTO;
-import com.bazarChino.tp_final_spring.DTO.ProductoDTO;
+import com.bazarChino.tp_final_spring.DTO.VentaDTO;
 import com.bazarChino.tp_final_spring.Exception.ResourceNotFound;
 import com.bazarChino.tp_final_spring.Models.Cliente;
-import com.bazarChino.tp_final_spring.Models.Producto;
+import com.bazarChino.tp_final_spring.Models.Venta;
 import com.bazarChino.tp_final_spring.Repository.IClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,9 @@ public class ClienteService implements IClienteService{
     }
 
     public ClienteDTO crearDTO(Cliente cliente){
+
         return new ClienteDTO(
+                cliente.getId_cliente(),
                 cliente.getDni(),
                 cliente.getApellido(),
                 cliente.getNombre()
@@ -61,6 +63,17 @@ public class ClienteService implements IClienteService{
     }
 
     @Override
+    public Cliente getClienteByVenta(VentaDTO ventaDTO) {
+
+        return this.getClienteById(ventaDTO.getUnCliente());
+    }
+
+    @Override
+    public ClienteDTO getClienteDTOByVenta(Venta venta) {
+        return this.getClienteDTOById(venta.getUnCliente().getId_cliente());
+    }
+
+    @Override
     public void deleteCliente(Long idCliente) {
         Cliente cliente = this.getClienteById(idCliente);
         cliRepository.delete(cliente);
@@ -80,4 +93,6 @@ public class ClienteService implements IClienteService{
 
         cliRepository.save(cli);
     }
+
+
 }

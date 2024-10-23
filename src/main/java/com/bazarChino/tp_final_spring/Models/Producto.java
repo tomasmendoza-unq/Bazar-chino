@@ -16,9 +16,6 @@ public class Producto {
     private String marca;
     private Double costo;
     private Double cantidad_disponible;
-    @ManyToOne
-    @JoinColumn(name = "cod_venta")
-    private Venta compra;
 
     public Producto(String nombre, String marca, Double costo, Double cantidad_disponible) {
         this.nombre = nombre;
