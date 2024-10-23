@@ -46,7 +46,7 @@ public class ClienteController {
     public ResponseEntity<?> editCliente(@PathVariable Long id_cliente, @Valid @RequestBody ClienteDTO cliente){
         cliService.editCliente(id_cliente,cliente);
 
-        return new ResponseEntity<>("Se edito el cliente con el id: " + id_cliente, HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(cliente);
     }
 
 }

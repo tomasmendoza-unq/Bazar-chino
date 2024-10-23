@@ -31,6 +31,15 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.FOUND).body(productoDTO);
     }
 
+    @GetMapping("/falta_stock")
+    public ResponseEntity<?> getProductosFaltaStock(){
+        List<ProductoDTO> productoDTOList = productService.getProductosFaltaStock();
+        if(productoDTOList.isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body("No hay productos con falta de stock");
+        }
+        return ResponseEntity.status(HttpStatus.FOUND).body(productoDTOList);
+    }
+
     @PostMapping("/crear")
     public ResponseEntity<ProductoDTO> saveProducto(@Valid @RequestBody ProductoDTO product){
         ProductoDTO productoDTO = productService.saveProducto(product);
@@ -48,4 +57,5 @@ public class ProductoController {
         productService.editProductoById(codProduct, product);
         return ResponseEntity.status(HttpStatus.OK).body(product);
     }
+
 }

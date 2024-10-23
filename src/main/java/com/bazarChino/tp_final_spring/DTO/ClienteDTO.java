@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class ClienteDTO {
 
+
+    private Long idcli;
+
     @NotNull(message = "Nombre no puede ser null")
     @NotBlank(message = "NOMBRE REQUIRED")
     private String nombre;
@@ -20,7 +23,8 @@ public class ClienteDTO {
     @NotBlank(message = "DNI REQUIRED")
     private String dni;
 
-    public ClienteDTO(String dni, String apellido, String nombre) {
+    public ClienteDTO(Long idcli, String dni, String apellido, String nombre) {
+        this.idcli = idcli;
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;

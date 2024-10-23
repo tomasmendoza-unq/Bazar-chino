@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class ProductoDTO {
 
+
+    private Long codProduct;
+
     @NotNull(message = "Nombre no puede ser null")
     private String nombre;
 
@@ -22,7 +25,8 @@ public class ProductoDTO {
     @Min(value=0, message = "El minimo disponible no puede ser menor a 0")
     private Double cantidad_disponible;
 
-    public ProductoDTO(String nombre, String marca, Double costo, Double cantidad_disponible) {
+    public ProductoDTO(Long codProduct, String nombre, String marca, Double costo, Double cantidad_disponible) {
+        this.codProduct = codProduct;
         this.nombre = nombre;
         this.marca = marca;
         this.costo = costo;
